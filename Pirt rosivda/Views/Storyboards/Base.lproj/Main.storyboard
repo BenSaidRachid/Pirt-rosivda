@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home Controller-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeController" customModule="Pirt_rosivda" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Pirt_rosivda" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                             </mapView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UPe-Sr-BtB" customClass="TextField" customModule="Pirt_rosivda" customModuleProvider="target">
                                 <rect key="frame" x="15" y="44" width="384" height="34"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="search"/>
@@ -30,23 +30,86 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FAY-Ro-JGA">
+                                <rect key="frame" x="344" y="802" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="2l7-hZ-TiM"/>
+                                    <constraint firstAttribute="height" constant="40" id="IR3-Dh-YXk"/>
+                                </constraints>
+                                <state key="normal" image="gps"/>
+                                <connections>
+                                    <action selector="recenterLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OWG-dc-fNo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dBn-Hl-OFk" secondAttribute="trailing" id="0xg-1x-ckz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FAY-Ro-JGA" secondAttribute="bottom" constant="20" id="2pj-Il-A82"/>
                             <constraint firstItem="dBn-Hl-OFk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Jr0-QQ-IQk"/>
                             <constraint firstItem="dBn-Hl-OFk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Km1-dA-80b"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FAY-Ro-JGA" secondAttribute="trailing" constant="30" id="RCz-aT-vJs"/>
                             <constraint firstItem="UPe-Sr-BtB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="ZL3-ma-hfl"/>
                             <constraint firstAttribute="bottom" secondItem="dBn-Hl-OFk" secondAttribute="bottom" id="grf-XC-idE"/>
                             <constraint firstItem="UPe-Sr-BtB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="rm7-5N-hZU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UPe-Sr-BtB" secondAttribute="trailing" constant="15" id="xd6-Ga-9ye"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="WAV-lZ-9Xw"/>
+                    <connections>
+                        <outlet property="mapVIew" destination="dBn-Hl-OFk" id="foi-Gd-Jrq"/>
+                        <outlet property="textField" destination="UPe-Sr-BtB" id="hxl-Nb-W1F"/>
+                        <segue destination="Oaq-5O-cL2" kind="show" identifier="showSearch" id="KL9-1B-elh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="30" y="89"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="6nD-VH-02k">
+            <objects>
+                <viewController id="Oaq-5O-cL2" customClass="SearchViewController" customModule="Pirt_rosivda" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z1f-Zy-2cd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDy-TR-Gja">
+                                <rect key="frame" x="152.5" y="394" width="109" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="109" id="uAm-bR-ehi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2a-jt-lJE">
+                                <rect key="frame" x="20" y="30" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="IWb-Ue-kws"/>
+                                    <constraint firstAttribute="width" constant="30" id="ScW-mh-xdR"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="arrow"/>
+                                <connections>
+                                    <action selector="back:" destination="Oaq-5O-cL2" eventType="touchUpInside" id="Qbh-uB-Ea7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hgV-tY-pWg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kDy-TR-Gja" firstAttribute="centerX" secondItem="hgV-tY-pWg" secondAttribute="centerX" id="EJc-af-DMX"/>
+                            <constraint firstItem="b2a-jt-lJE" firstAttribute="leading" secondItem="hgV-tY-pWg" secondAttribute="leading" constant="20" id="eoi-A8-AlB"/>
+                            <constraint firstItem="b2a-jt-lJE" firstAttribute="top" secondItem="hgV-tY-pWg" secondAttribute="top" constant="30" id="ga3-GJ-WZh"/>
+                            <constraint firstItem="kDy-TR-Gja" firstAttribute="top" secondItem="hgV-tY-pWg" secondAttribute="top" constant="394" id="m3U-9r-jcm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="huQ-Qx-D2d"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ix7-td-k4R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="849" y="95"/>
         </scene>
     </scenes>
     <designables>
@@ -55,6 +118,8 @@
         </designable>
     </designables>
     <resources>
+        <image name="arrow" width="64" height="64"/>
+        <image name="gps" width="64" height="64"/>
         <image name="search" width="16" height="16"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
