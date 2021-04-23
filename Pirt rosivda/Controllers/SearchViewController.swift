@@ -8,12 +8,31 @@
 import UIKit
 
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UITableViewDataSource {
+   
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
     }
     
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        Suggestion.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ImageTableViewCell
+        let suggestion = Suggestion.allCases[indexPath.row]
+        
+        cell.name?.text = suggestion.title
+        cell.imgView?.image = UIImage(named: suggestion.iconName)
+        return cell
+    }
+    
 }

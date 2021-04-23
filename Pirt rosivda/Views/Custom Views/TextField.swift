@@ -31,8 +31,8 @@ import UIKit
     func updateView() {
         if let image = leftImage {
             leftViewMode = UITextField.ViewMode.always
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-            imageView.contentMode = .scaleAspectFit
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+            imageView.contentMode = .scaleAspectFill
             imageView.image = image
             imageView.tintColor = color
             leftView = imageView
