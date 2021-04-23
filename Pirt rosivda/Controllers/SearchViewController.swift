@@ -15,6 +15,8 @@ class SearchViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
+        tableView.separatorInset = .zero
+
     }
     
     @IBAction func back(_ sender: Any) {
