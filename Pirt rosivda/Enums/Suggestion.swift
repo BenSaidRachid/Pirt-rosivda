@@ -8,9 +8,9 @@
 import Foundation
 
 enum Suggestion: CaseIterable {
-    case coffees
-    case restaurants
-    case arts
+    case cafe
+    case restaurant
+    case art
     case health
     case animal
     case house
@@ -20,11 +20,11 @@ enum Suggestion: CaseIterable {
     
     var iconName: String {
         switch self {
-            case .coffees:
+            case .cafe:
                 return "coffee"
-            case .restaurants:
+            case .restaurant:
                 return "restaurant"
-            case .arts:
+            case .art:
                 return "palette"
             case .health:
                 return "heart"
@@ -43,11 +43,11 @@ enum Suggestion: CaseIterable {
     
     var title: String {
         switch self {
-            case .coffees:
+            case .cafe:
                 return "Cafés et thés"
-            case .restaurants:
+            case .restaurant:
                 return "Alimentation"
-            case .arts:
+            case .art:
                 return "Art & Loisirs"
             case .health:
                 return "Santé & Médical"
@@ -61,6 +61,29 @@ enum Suggestion: CaseIterable {
                 return "Organisation d'événements"
             case .book:
                 return "Formation & Enseignement"
+        }
+    }
+    
+    var type: String {
+        switch self {
+            case .cafe:
+                return "cafe"
+            case .restaurant:
+                return "restaurant"
+            case .art:
+                return "art_gallery"
+            case .health:
+                return "doctor"
+            case .animal:
+                return "pet_store"
+            case .house:
+                return "real_estate_agency"
+            case .airplane:
+                return "airport"
+            case .balloon:
+                return "tourist_attraction"
+            case .book:
+                return "book_store"
         }
     }
 }

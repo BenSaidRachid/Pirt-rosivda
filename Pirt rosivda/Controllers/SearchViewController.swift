@@ -9,6 +9,7 @@ import UIKit
 
 protocol SearchViewControllerDelegate {
     func search(text: String)
+    func suggestion(suggestion: Suggestion)
 }
 
 class SearchViewController: UIViewController, UITableViewDataSource {
@@ -20,17 +21,14 @@ class SearchViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        tableView.delegate = self
+        textField.delegate = self
         tableView.tableFooterView = UIView()
         tableView.separatorInset = .zero
         textField.leftViewCallback = {
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
-    @IBAction func back(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     
     func handleEnter() {
         self.delegate?.search(text: "")
@@ -49,4 +47,23 @@ class SearchViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+}
+
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let suggestion = Suggestion.allCases[indexPath.row]
+        self.delegate?.suggestion(suggestion: suggestion)
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SearchViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let text = textField.text {
+            self.delegate?.search(text: text)
+            dismiss(animated: true, completion: nil)
+        }
+        return true
+    }
 }

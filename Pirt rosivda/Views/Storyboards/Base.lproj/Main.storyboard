@@ -61,7 +61,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="WAV-lZ-9Xw"/>
                     <connections>
-                        <outlet property="mapVIew" destination="dBn-Hl-OFk" id="foi-Gd-Jrq"/>
+                        <outlet property="mapView" destination="dBn-Hl-OFk" id="foi-Gd-Jrq"/>
                         <outlet property="textField" destination="UPe-Sr-BtB" id="hxl-Nb-W1F"/>
                         <segue destination="Oaq-5O-cL2" kind="show" identifier="showSearch" id="KL9-1B-elh"/>
                     </connections>
@@ -78,7 +78,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eAr-iX-GwH" customClass="TextField" customModule="Pirt_rosivda" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eAr-iX-GwH" customClass="TextField" customModule="Pirt_rosivda" customModuleProvider="target">
                                 <rect key="frame" x="15" y="40" width="384" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>

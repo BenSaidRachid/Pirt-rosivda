@@ -14,6 +14,9 @@ class ImageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        //let backgroundView = UIView()
+        //backgroundView.backgroundColor = .red
+        //self.selectedBackgroundView = backgroundView
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

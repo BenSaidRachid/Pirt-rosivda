@@ -17,9 +17,9 @@ import UIKit
     @IBInspectable var leftPadding: CGFloat = 0
 
     @IBInspectable var color: UIColor = UIColor.lightGray {
-            didSet {
-                updateView()
-            }
+        didSet {
+            updateView()
+        }
     }
     
     private var tapGesture: UITapGestureRecognizer {

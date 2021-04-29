@@ -18,6 +18,11 @@
 		1C1087792632EDCF00E1FCF4 /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1087782632EDCF00E1FCF4 /* Suggestion.swift */; };
 		1C10878226331A1100E1FCF4 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C10878126331A1100E1FCF4 /* ImageTableViewCell.swift */; };
 		1C7E0298263190A000765BF3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7E0297263190A000765BF3 /* SearchViewController.swift */; };
+		1C95C817263AE282000D3C7D /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C95C816263AE282000D3C7D /* Place.swift */; };
+		1C95C81A263AEF34000D3C7D /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C95C819263AEF34000D3C7D /* keys.plist */; };
+		1C95C81D263AEF99000D3C7D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1C95C81C263AEF99000D3C7D /* .gitignore */; };
+		1C95C821263AF863000D3C7D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C95C820263AF863000D3C7D /* Config.swift */; };
+		1C95C825263AF8E0000D3C7D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C95C824263AF8E0000D3C7D /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,11 @@
 		1C1087782632EDCF00E1FCF4 /* Suggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
 		1C10878126331A1100E1FCF4 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 		1C7E0297263190A000765BF3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		1C95C816263AE282000D3C7D /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		1C95C819263AEF34000D3C7D /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
+		1C95C81C263AEF99000D3C7D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		1C95C820263AF863000D3C7D /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		1C95C824263AF8E0000D3C7D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +76,7 @@
 		1C0620D92629DD47005C67D8 /* Pirt rosivda */ = {
 			isa = PBXGroup;
 			children = (
+				1C95C81F263AF5E7000D3C7D /* Helpers */,
 				1C1087772632ED9400E1FCF4 /* Enums */,
 				1C0620E82629DD48005C67D8 /* Info.plist */,
 				1C0620F72629E18B005C67D8 /* Services */,
@@ -74,6 +85,7 @@
 				1C0620F42629E034005C67D8 /* Views */,
 				1C0620F32629E00A005C67D8 /* Models */,
 				1C0620F22629DFC1005C67D8 /* Controllers */,
+				1C95C81C263AEF99000D3C7D /* .gitignore */,
 			);
 			path = "Pirt rosivda";
 			sourceTree = "<group>";
@@ -90,6 +102,7 @@
 		1C0620F32629E00A005C67D8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1C95C816263AE282000D3C7D /* Place.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -116,6 +129,7 @@
 			children = (
 				1C0620DC2629DD47005C67D8 /* SceneDelegate.swift */,
 				1C0620DA2629DD47005C67D8 /* AppDelegate.swift */,
+				1C95C819263AEF34000D3C7D /* keys.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -152,6 +166,15 @@
 				1C1087782632EDCF00E1FCF4 /* Suggestion.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		1C95C81F263AF5E7000D3C7D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1C95C820263AF863000D3C7D /* Config.swift */,
+				1C95C824263AF8E0000D3C7D /* Utils.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +234,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C95C81D263AEF99000D3C7D /* .gitignore in Resources */,
+				1C95C81A263AEF34000D3C7D /* keys.plist in Resources */,
 				1C0620E72629DD48005C67D8 /* LaunchScreen.storyboard in Resources */,
 				1C0620E42629DD48005C67D8 /* Assets.xcassets in Resources */,
 				1C0620E22629DD47005C67D8 /* Main.storyboard in Resources */,
@@ -230,6 +255,9 @@
 				1C0620DB2629DD47005C67D8 /* AppDelegate.swift in Sources */,
 				1C0620FB2629E276005C67D8 /* API.swift in Sources */,
 				1C0620FF2629E2E9005C67D8 /* TextField.swift in Sources */,
+				1C95C817263AE282000D3C7D /* Place.swift in Sources */,
+				1C95C825263AF8E0000D3C7D /* Utils.swift in Sources */,
+				1C95C821263AF863000D3C7D /* Config.swift in Sources */,
 				1C1087792632EDCF00E1FCF4 /* Suggestion.swift in Sources */,
 				1C0620DD2629DD47005C67D8 /* SceneDelegate.swift in Sources */,
 			);

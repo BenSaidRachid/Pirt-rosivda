@@ -11,7 +11,7 @@ import MapKit
 class HomeViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var textField: TextField!
-    @IBOutlet weak var mapVIew: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
     
     private let locationManager:CLLocationManager = CLLocationManager()
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.startUpdatingLocation()
-        mapVIew.showsUserLocation = true
+        mapView.showsUserLocation = true
     }
     
     @objc func textFieldDidTap() {
@@ -35,7 +35,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func recenterLocation(_ sender: Any)
     {
-        if let location = mapVIew.userLocation.location {
+        if let location = mapView.userLocation.location {
             render(location)
         }
     }
@@ -51,14 +51,31 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let region = MKCoordinateRegion(center: coordinate, span: span)
-        mapVIew.setRegion(region, animated: true)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? SearchViewController {
+            vc.delegate = self
+        }
     }
 }
 
 extension HomeViewController: SearchViewControllerDelegate {
-    func search(text: String) {
-        print(text)
+    func suggestion(suggestion: Suggestion) {
+        if let location = mapView.userLocation.location {
+            API.shared.searchBy(suggestion, location: location) { (places) in
+                print("places \(String(describing: places))")
+            }
+        }
     }
     
+    func search(text: String) {
+        if let location = mapView.userLocation.location {
+            API.shared.searchBy(text, location: location) { (places) in
+                print("places \(String(describing: places))")
+            }
+        }
+    }
     
 }
