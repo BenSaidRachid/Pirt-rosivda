@@ -8,12 +8,12 @@
 import Foundation
 
 class Utils {
-    static func getPlist(withName name: String) -> [String]?
+    static func getPlist(withName name: String) -> [String: Any]?
     {
         if  let path = Bundle.main.path(forResource: name, ofType: "plist"),
             let xml = FileManager.default.contents(atPath: path)
         {
-            return (try? PropertyListSerialization.propertyList(from: xml, options: .mutableContainersAndLeaves, format: nil)) as? [String]
+            return (try? PropertyListSerialization.propertyList(from: xml, options: .mutableContainersAndLeaves, format: nil)) as? [String: Any]
         }
 
         return nil

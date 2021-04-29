@@ -8,12 +8,11 @@
 import Foundation
 
 class Config {
-    static func getGoogleApiKey() -> [String]? {
-        guard let keys = Utils.getPlist(withName: "keys") else {
-            return nil;
+    static func getGoogleApiKey() -> String? {
+        guard let key = Utils.getPlist(withName: "keys")?["GOOGLE_API_KEY"] as? String else {
+           return nil;
         }
-        
-        print(keys)
-        return keys
+       
+        return key
     }
 }

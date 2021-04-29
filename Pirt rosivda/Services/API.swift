@@ -48,12 +48,12 @@ class API {
     }
     
     func searchBy(_ suggestion: Suggestion, location: CLLocation, completion: @escaping (Places?) -> Void) {
-        let path = "\(baseURL)/nearbysearch/json?type=\(suggestion.type)"
+        let path = "nearbysearch/json?type=\(suggestion.type)"
         call(path, location: location, completion: completion)
     }
     
     func searchBy(_ term: String, location: CLLocation, completion: @escaping (Places?) -> Void) {
-        let path = "\(baseURL)/textsearch/json?query=\(term)"
+        let path = "textsearch/json?query=\(term)"
         call(path, location: location, completion: completion)
     }
 }
