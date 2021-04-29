@@ -55,3 +55,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     }
 }
 
+extension HomeViewController: SearchViewControllerDelegate {
+    func search(text: String) {
+        print(text)
+    }
+    
+    
+}

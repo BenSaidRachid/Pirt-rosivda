@@ -21,6 +21,17 @@ import UIKit
                 updateView()
             }
     }
+    
+    private var tapGesture: UITapGestureRecognizer {
+       let gesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+       return gesture
+    }
+   
+    var leftViewCallback: (() -> ())?
+       
+    @objc private func imageTapped() {
+       leftViewCallback?()
+    }
 
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
        var textRect = super.leftViewRect(forBounds: bounds)
@@ -32,10 +43,16 @@ import UIKit
         if let image = leftImage {
             leftViewMode = UITextField.ViewMode.always
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-            imageView.contentMode = .scaleAspectFill
-            imageView.image = image
+            imageView.contentMode = .scaleAspectFit
             imageView.tintColor = color
+            imageView.addGestureRecognizer(tapGesture)
+            imageView.isUserInteractionEnabled = true
+            imageView.image = image
             leftView = imageView
+            NSLayoutConstraint(item: imageView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: leftView, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: 0).isActive = true
+            NSLayoutConstraint(item: imageView, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: leftView, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0).isActive = true
+            NSLayoutConstraint(item: imageView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 20).isActive = true
+            NSLayoutConstraint(item: imageView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 20).isActive = true
         } else {
             leftViewMode = UITextField.ViewMode.never
             leftView = nil
