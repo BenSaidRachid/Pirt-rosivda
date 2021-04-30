@@ -22,7 +22,7 @@ class API {
         
         let latLng = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
         
-        guard let url = URL(string: "\(baseURL)/\(path)&location=\(latLng)&radius=3500&key=\(API_KEY)") else {
+        guard let url = URL(string: "\(baseURL)/\(path)&location=\(latLng)&radius=5000&key=\(API_KEY)") else {
             completion(nil)
             return
         }

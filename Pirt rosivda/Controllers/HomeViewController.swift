@@ -59,13 +59,33 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             vc.delegate = self
         }
     }
+    
+    func addPlacesAnnotation(_ places: Places?) {
+        if let results = places?.results {
+            for place in results {
+               mapView.addAnnotation(createPlaceAnnotation(place))
+            }
+        }
+    }
+    func createPlaceAnnotation(_ place: Result) -> MKPointAnnotation {
+        guard let lat =  place.geometry?.location?.lat else {
+            return MKPointAnnotation();
+        }
+        guard let long =  place.geometry?.location?.lng else {
+            return MKPointAnnotation();
+        }
+        let newAnnotation = MKPointAnnotation()
+        newAnnotation.title = place.name
+        newAnnotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        return newAnnotation
+    }
 }
 
 extension HomeViewController: SearchViewControllerDelegate {
     func suggestion(suggestion: Suggestion) {
         if let location = mapView.userLocation.location {
             API.shared.searchBy(suggestion, location: location) { (places) in
-                print("places \(String(describing: places))")
+                self.addPlacesAnnotation(places)
             }
         }
     }
@@ -73,7 +93,7 @@ extension HomeViewController: SearchViewControllerDelegate {
     func search(text: String) {
         if let location = mapView.userLocation.location {
             API.shared.searchBy(text, location: location) { (places) in
-                print("places \(String(describing: places))")
+                self.addPlacesAnnotation(places)
             }
         }
     }
