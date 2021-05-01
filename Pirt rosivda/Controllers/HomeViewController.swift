@@ -12,8 +12,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var textField: TextField!
     @IBOutlet weak var mapView: MKMapView!
-    
-    private let locationManager:CLLocationManager = CLLocationManager()
+    var places: [Result]?
+    private let locationManager: CLLocationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(textFieldDidTap))
@@ -22,6 +22,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         locationManager.delegate = self
+        mapView.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
@@ -60,32 +61,43 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func addPlacesAnnotation(_ places: Places?) {
-        if let results = places?.results {
-            for place in results {
+    func addPlacesAnnotation(_ places: [Result]?) {
+        if let places = places {
+            for place in places {
                mapView.addAnnotation(createPlaceAnnotation(place))
             }
         }
     }
-    func createPlaceAnnotation(_ place: Result) -> MKPointAnnotation {
-        guard let lat =  place.geometry?.location?.lat else {
-            return MKPointAnnotation();
+    
+    func createPlaceAnnotation(_ place: Result) -> PointAnnotation {
+        guard let lat = place.geometry?.location?.lat, let long =  place.geometry?.location?.lng else {
+            return PointAnnotation();
         }
-        guard let long =  place.geometry?.location?.lng else {
-            return MKPointAnnotation();
-        }
-        let newAnnotation = MKPointAnnotation()
+        let newAnnotation = PointAnnotation()
         newAnnotation.title = place.name
         newAnnotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        newAnnotation.id = place.placeID
         return newAnnotation
     }
 }
+
+extension HomeViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation as? PointAnnotation else { return }
+        guard let place = places?.first(where: { (place) -> Bool in
+            return place.placeID == annotation.id
+        }) else { return }
+        print(place)
+    }
+}
+
 
 extension HomeViewController: SearchViewControllerDelegate {
     func suggestion(suggestion: Suggestion) {
         if let location = mapView.userLocation.location {
             API.shared.searchBy(suggestion, location: location) { (places) in
-                self.addPlacesAnnotation(places)
+                self.places = places?.results
+                self.addPlacesAnnotation(places?.results)
             }
         }
     }
@@ -93,9 +105,9 @@ extension HomeViewController: SearchViewControllerDelegate {
     func search(text: String) {
         if let location = mapView.userLocation.location {
             API.shared.searchBy(text, location: location) { (places) in
-                self.addPlacesAnnotation(places)
+                self.places = places?.results
+                self.addPlacesAnnotation(places?.results)
             }
         }
     }
-    
 }

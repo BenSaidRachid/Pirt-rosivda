@@ -13,7 +13,6 @@ protocol SearchViewControllerDelegate {
 }
 
 class SearchViewController: UIViewController, UITableViewDataSource {
-   
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textField: TextField!
     var delegate: SearchViewControllerDelegate?
@@ -28,10 +27,6 @@ class SearchViewController: UIViewController, UITableViewDataSource {
         textField.leftViewCallback = {
             self.dismiss(animated: true, completion: nil)
         }
-    }
-    
-    func handleEnter() {
-        self.delegate?.search(text: "")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

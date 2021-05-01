@@ -23,6 +23,7 @@
 		1C95C81D263AEF99000D3C7D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1C95C81C263AEF99000D3C7D /* .gitignore */; };
 		1C95C821263AF863000D3C7D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C95C820263AF863000D3C7D /* Config.swift */; };
 		1C95C825263AF8E0000D3C7D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C95C824263AF8E0000D3C7D /* Utils.swift */; };
+		1CD79428263D63E8006CF169 /* PointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD79427263D63E8006CF169 /* PointAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		1C95C81C263AEF99000D3C7D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1C95C820263AF863000D3C7D /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		1C95C824263AF8E0000D3C7D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		1CD79427263D63E8006CF169 /* PointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		1C0620D92629DD47005C67D8 /* Pirt rosivda */ = {
 			isa = PBXGroup;
 			children = (
+				1CD79426263D63C0006CF169 /* Extensions */,
 				1C95C81F263AF5E7000D3C7D /* Helpers */,
 				1C1087772632ED9400E1FCF4 /* Enums */,
 				1C0620E82629DD48005C67D8 /* Info.plist */,
@@ -177,6 +180,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		1CD79426263D63C0006CF169 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1CD79427263D63E8006CF169 /* PointAnnotation.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -256,6 +267,7 @@
 				1C0620FB2629E276005C67D8 /* API.swift in Sources */,
 				1C0620FF2629E2E9005C67D8 /* TextField.swift in Sources */,
 				1C95C817263AE282000D3C7D /* Place.swift in Sources */,
+				1CD79428263D63E8006CF169 /* PointAnnotation.swift in Sources */,
 				1C95C825263AF8E0000D3C7D /* Utils.swift in Sources */,
 				1C95C821263AF863000D3C7D /* Config.swift in Sources */,
 				1C1087792632EDCF00E1FCF4 /* Suggestion.swift in Sources */,
