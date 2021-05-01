@@ -69,6 +69,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    func removePlacesAnnotation() {
+        let annotations = mapView.annotations.filter({ !($0 is MKUserLocation) })
+        mapView.removeAnnotations(annotations)
+    }
+    
     func createPlaceAnnotation(_ place: Result) -> PointAnnotation {
         guard let lat = place.geometry?.location?.lat, let long =  place.geometry?.location?.lng else {
             return PointAnnotation();
@@ -78,6 +83,12 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         newAnnotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
         newAnnotation.id = place.placeID
         return newAnnotation
+    }
+    
+    func displayAlertError() {
+        let alert = UIAlertController(title: "No found places found", message: "Sorry, we couldn't find places matching your request within your area", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -96,8 +107,13 @@ extension HomeViewController: SearchViewControllerDelegate {
     func suggestion(suggestion: Suggestion) {
         if let location = mapView.userLocation.location {
             API.shared.searchBy(suggestion, location: location) { (places) in
-                self.places = places?.results
-                self.addPlacesAnnotation(places?.results)
+                if let places = self.checkPlacesStatus(places) {
+                    self.places = places.results
+                    self.addPlacesAnnotation(places.results)
+                } else {
+                    self.removePlacesAnnotation()
+                    self.displayAlertError()
+                }
             }
         }
     }
@@ -105,9 +121,22 @@ extension HomeViewController: SearchViewControllerDelegate {
     func search(text: String) {
         if let location = mapView.userLocation.location {
             API.shared.searchBy(text, location: location) { (places) in
-                self.places = places?.results
-                self.addPlacesAnnotation(places?.results)
+                if let places = self.checkPlacesStatus(places) {
+                    print(places)
+                    self.places = places.results
+                    self.addPlacesAnnotation(places.results)
+                } else {
+                    self.removePlacesAnnotation()
+                    self.displayAlertError()
+                }
             }
         }
+    }
+    
+    func checkPlacesStatus(_ places: Places?) -> Places? {
+        if let places = places, places.status != "ZERO_RESULTS" {
+            return places
+        }
+        return nil;
     }
 }
